@@ -18,8 +18,8 @@ public class DuckyController : MonoBehaviour
         float Vertical = Input.GetAxis("Vertical");
         
         Vector2 Position = transform.position;
-        Position.x = Position.x + 0.1f * horizontal * Time.DeltaTime;
-        Position.y = Position.y + 0.1f * Vertical;
+        Position.x = Position.x + 3.0f * horizontal * Time.deltaTime;
+        Position.y = Position.y + 3.0f * Vertical * Time.deltaTime;
 
         transform.position = Position;
     }
