@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class DuckyController : MonoBehaviour
 {
+    public float speed = 3.0f;
+    public int maxhealth = 5;
+    public int health { get { return currenthealth; } }
+    int currenthealth;
+
+
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
@@ -11,8 +17,8 @@ public class DuckyController : MonoBehaviour
     void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-       // QualitySettings.vSyncCount = 0;
-       // Application.targetFrameRate = 10;
+        currenthealth = maxhealth;
+        currenthealth = 1;
     }
 
     // Update is called once per frame
@@ -29,9 +35,14 @@ public class DuckyController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 Position = rigidbody2d.position;
-        Position.x = Position.x + 3.0f * horizontal * Time.deltaTime;
-        Position.y = Position.y + 3.0f * vertical * Time.deltaTime;
+        Position.x = Position.x + speed * horizontal * Time.deltaTime;
+        Position.y = Position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(Position);
+    }
+    public void ChangeHealth(int amount)
+    {
+     currenthealth = Mathf.Clamp(currenthealth + amount, 0, maxhealth);
+        Debug.Log(currenthealth +"/" + maxhealth);
     }
 }

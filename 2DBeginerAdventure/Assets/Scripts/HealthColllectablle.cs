@@ -6,6 +6,16 @@ public class HealthColllectablle : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D Other)
     {
-        Debug.Log("object that entered the trigger is:" + Other);
+      DuckyController controller = Other.GetComponent<DuckyController>();
+        if (controller != null)
+        {
+            if(controller.health < controller.maxhealth)
+            {
+                controller.ChangeHealth(1);
+                Destroy(gameObject);
+            }
+            
+        }
+        
     }
 }
